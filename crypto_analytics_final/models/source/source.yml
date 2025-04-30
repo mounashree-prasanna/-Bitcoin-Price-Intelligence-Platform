@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: raw
+    database: USER_DB_JELLYFISH  
+    schema: raw
+    description: "Schema which stores raw tables (ETL)"
+    tables:
+      - name: crypto_asset_info
+        identifier: crypto_data
+        description: "Pricing-related information"
+
+      - name: crypto_volume_trades
+        identifier: crypto_data
+        description: "Trading-related information"
+
+      - name: historical_data
+        identifier: historical_data
+        description: "Daily BTC/USDT pricing and trading metrics from Binance"
+
+  - name: analytics 
+    database: USER_DB_JELLYFISH
+    schema: analytics
+    description: "Schema which stores analytics tables (ELT)"
+    tables:
+      - name: crypto_summary
+        identifier: crypto_summary
+        description: "Crypto activity summary table"

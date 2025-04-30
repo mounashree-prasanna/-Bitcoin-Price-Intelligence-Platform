@@ -1,0 +1,2 @@
+time_period_start,time_period_end,time_open,time_close,price_open,price_high,price_low,price_close,volume_traded,trades_count,asset_pair
+2025-04-30T07:00:00.0000000Z,2025-04-30T08:00:00.0000000Z,2025-04-30T07:00:00.0710000Z,2025-04-30T07:38:16.7300000Z,94752,94869.49,94623.54,94623.55,294.14378999999974,32013,BINANCE_SPOT_BTC_USDT

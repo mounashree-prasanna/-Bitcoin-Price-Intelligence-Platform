@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: moving_avg
+    description: "7-day and 30-day moving averages for BTC/USDT closing prices"
+    columns:
+      - name: date
+        description: "The date of the trading activity"
+        tests:
+          - not_null
+          - unique
+      - name: price_close
+        description: "Closing price of the asset"
+        tests:
+          - not_null
+      - name: ma_7_day
+        description: "7-day moving average of the closing price"
+      - name: ma_30_day
+        description: "30-day moving average of the closing price"
+
+  - name: volatility
+    description: "7-day and 30-day rolling volatility based on closing prices"
+    columns:
+      - name: date
+        description: "The date of the trading activity"
+        tests:
+          - not_null
+          - unique
+      - name: volatility_7_day
+        description: "7-day rolling standard deviation of closing price"
+      - name: volatility_30_day
+        description: "30-day rolling standard deviation of closing price"
+
+  - name: rsi
+    description: "14-day Relative Strength Index (RSI) for BTC/USDT"
+    columns:
+      - name: date
+        description: "The date of the trading activity"
+        tests:
+          - not_null
+          - unique
+      - name: rsi_14_day
+        description: "14-day RSI value"
+      - name: avg_gain
+        description: "Average gain over the 14-day window"
+      - name: avg_loss
+        description: "Average loss over the 14-day window"
+
+  - name: volume_trend
+    description: "Ratio of price to volume traded over time"
+    columns:
+      - name: date
+        description: "The date of the trading activity"
+        tests:
+          - not_null
+          - unique
+      - name: price_close
+        description: "Closing price of the asset"
+      - name: volume_traded
+        description: "Volume traded in the period"
+      - name: price_volume_ratio
+        description: "Ratio of closing price to volume traded"
