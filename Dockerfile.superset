@@ -1,0 +1,15 @@
+FROM apache/superset:latest
+
+USER root
+
+# Install required system-level crypto libs
+RUN apt-get update && apt-get install -y \
+    libssl-dev \
+    build-essential \
+    && apt-get clean
+
+# Use your existing Python requirements file
+COPY requirements.txt /app/requirements.txt
+RUN pip install -r /app/requirements.txt
+
+USER superset

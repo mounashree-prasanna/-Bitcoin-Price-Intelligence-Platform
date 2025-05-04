@@ -10,3 +10,8 @@ yfinance==0.2.40
 
 # Airflow + Provider
 apache-airflow-providers-snowflake==4.1.0
+
+snowflake-sqlalchemy
+snowflake-connector-python
+
+gevent

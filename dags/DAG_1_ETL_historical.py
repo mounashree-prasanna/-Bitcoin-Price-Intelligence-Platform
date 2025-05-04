@@ -8,6 +8,7 @@ import yfinance as yf
 import requests
 from airflow.models import Variable
 import logging
+from airflow.operators.dagrun_operator import TriggerDagRunOperator
 
 def return_snowflake_conn():
     hook = SnowflakeHook(snowflake_conn_id='snowflake_conn_etl')
@@ -165,4 +166,17 @@ with DAG(
     table_created = create_table()
     loaded = populate_table_via_stage(file_path)
 
-    extracted >> table_created >> loaded
+    trigger_ml_dag = TriggerDagRunOperator(
+        task_id='trigger_ml_dag',
+        trigger_dag_id='ml_dag',
+        wait_for_completion=False
+    )
+
+    trigger_crypto_analytics = TriggerDagRunOperator(
+        task_id='trigger_crypto_analytics',
+        trigger_dag_id='crypto_analytics',
+        wait_for_completion=False
+    )
+
+    # Define DAG dependency chain
+    extracted >> table_created >> loaded >> [trigger_ml_dag, trigger_crypto_analytics]

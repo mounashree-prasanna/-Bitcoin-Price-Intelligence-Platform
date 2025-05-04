@@ -19,6 +19,7 @@ def train(crypto_data_table, crypto_forecast_view, crypto_forecast_model):
      - Create a view with training related columns
      - Create a model with the view above
     """
+    conn.execute(f"USE WAREHOUSE {warehouse};")
     create_view_sql = f"""CREATE OR REPLACE VIEW {schema1}.{crypto_forecast_view} AS 
         SELECT TIME_PERIOD_START, PRICE_OPEN, ASSET_PAIR 
         FROM {schema}.{crypto_data_table}"""
@@ -45,6 +46,7 @@ def predict(crypto_forecast_model, crypto_data_table, crypto_predictions_table, 
      - Generate predictions and store the results to a table named forecast_table.
      - Union your predictions with your historical data, then create the final table
     """
+    conn.execute(f"USE WAREHOUSE {warehouse};")
     make_prediction_sql = f"""BEGIN
         -- This is the step that creates your predictions.
         CALL {schema1}.{crypto_forecast_model}!FORECAST(
@@ -81,6 +83,7 @@ with DAG(
     
     schema = "user_db_jellyfish.raw"
     schema1 = "user_db_jellyfish.analytics"
+    warehouse = 'JELLYFISH_QUERY_WH'
     table = "historical_data"
     view = "train_view"
     func_name = "forecast_function_name"
