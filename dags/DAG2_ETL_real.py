@@ -132,7 +132,7 @@ def load_to_snowflake_real_time(file_path):
 
 # DAG definition
 with DAG(
-    dag_id='dag2_real_time_btc',
+    dag_id='DAG2_Real_Time_ETL',
     start_date=datetime(2024, 6, 21),
     catchup=False,
     tags=['ETL', 'crypto', 'real-time'],

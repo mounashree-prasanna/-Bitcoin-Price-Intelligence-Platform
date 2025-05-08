@@ -27,7 +27,7 @@ dbt_env = {
 }
 
 with DAG(
-    "crypto_analytics",
+    "DAG4_ELT",
     start_date=datetime(2025, 4, 22),
     description="A Airflow DAG to invoke dbt runs using a BashOperator",
     schedule=None,

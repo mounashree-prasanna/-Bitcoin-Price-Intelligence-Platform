@@ -74,11 +74,11 @@ def predict(crypto_forecast_model, crypto_data_table, crypto_predictions_table, 
 
 
 with DAG(
-    dag_id = 'ml_dag',
+    dag_id = 'DAG3_ML',
     start_date = datetime(2024,6,21),
     catchup=False,
     tags=['ML', 'ELT'],
-    schedule_interval = '1 0 * * *'
+    schedule_interval = None
 ) as dag:
     
     schema = "user_db_jellyfish.raw"

@@ -152,11 +152,11 @@ def populate_table_via_stage(file_path):
 
 
 with DAG(
-    dag_id='DAG1_ETL',
+    dag_id='DAG1_Historical_ETL',
     start_date=datetime(2024, 6, 21),
     catchup=False,
     tags=['ETL', 'crypto', 'bitcoin'],
-    schedule_interval=None,
+    schedule_interval="0 8 * * *",
     default_args={'retries': 1, 'retry_delay': timedelta(minutes=5)}
 ) as dag:
 
@@ -168,13 +168,13 @@ with DAG(
 
     trigger_ml_dag = TriggerDagRunOperator(
         task_id='trigger_ml_dag',
-        trigger_dag_id='ml_dag',
+        trigger_dag_id='DAG3_ML',
         wait_for_completion=False
     )
 
     trigger_crypto_analytics = TriggerDagRunOperator(
         task_id='trigger_crypto_analytics',
-        trigger_dag_id='crypto_analytics',
+        trigger_dag_id='DAG4_ELT',
         wait_for_completion=False
     )
 
