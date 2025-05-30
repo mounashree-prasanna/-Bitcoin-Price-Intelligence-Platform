@@ -1,4 +1,4 @@
-# 💰 Real-Time Cryptocurrency ELT Pipeline
+# 💰  Bitcoin Price Intelligence Platform
 
 An automated, scalable ELT pipeline for ingesting, transforming, and visualizing live cryptocurrency market data using **Apache Airflow**, **Snowflake**, **dbt**, and **Superset**.
 
