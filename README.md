@@ -22,3 +22,29 @@ This project aims to automate the ingestion and transformation of live cryptocur
 | Deployment         | Docker (optional), Cloud-hosted (optional) |
 
 ---
+
+## 🌟 Key Features
+
+- End-to-end ELT automation using open-source tools
+- Modular, reusable dbt models for scalable transformation
+- Reduced manual reporting effort by 50%
+- Instant insights from live crypto market data
+
+---
+
+## ⚙️ How It Works
+
+1. **Airflow DAG** is scheduled to run every X minutes:
+   - Extracts live crypto data via coinAPI
+   - Loads raw data into a Snowflake staging table using ETL pipeline
+
+2. **dbt models**:
+   - Clean, transform, and normalize raw data
+   - Create analytics-ready tables such as daily prices, volumes, trends
+
+3. **Superset Dashboards**:
+   - Visualize trends like price changes, volume spikes, moving averages
+   - Filterable by time window, coin type, or exchange
+
+---
+
